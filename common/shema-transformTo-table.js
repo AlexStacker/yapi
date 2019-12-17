@@ -76,9 +76,27 @@ const Schema = (data, key) => {
 };
 
 const SchemaObject = (data, key) => {
-  let { properties, required } = data;
+  let { properties, required, anyOf, oneOf } = data;
   properties = properties || {};
   required = required || [];
+  let result = [];
+  let complex = oneOf || anyOf;
+  // 多种响应状态值
+  if (_.isArray(complex) && key == 0) {
+    return complex.map(function (child) {
+      let { properties, required, description } = child;
+      return {
+        isComplex: true,
+        description,
+        data: UnpackObjectProperties(properties, required, 0)
+      }
+    });
+  }
+
+  return result.concat(UnpackObjectProperties(properties, required, key));
+};
+
+const UnpackObjectProperties = (properties, required, key) => {
   let result = [];
   Object.keys(properties).map((name, index) => {
     let value = properties[name];

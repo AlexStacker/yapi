@@ -122,7 +122,22 @@ class SchemaTable extends Component {
     }
     let data = schemaTransformToTable(product);
     data = _.isArray(data) ? data : [];
-    return <Table bordered size="small" pagination={false} dataSource={data} columns={columns} />;
+
+    let complex = data.filter((dt) => (dt.isComplex));
+
+    // 多种返回状态
+    if(complex) {
+      return data.map(function(dt, idx) {
+        return (
+          <div className="interface-response" key={idx} >
+            <h3 className="interface-response-title">{dt.description}</h3>
+            <Table bordered size="small" pagination={false} dataSource={dt.data} columns={columns}/>
+          </div>
+        );
+      });
+    } else {
+      return <Table bordered size="small" pagination={false} dataSource={data} columns={columns} />;
+    }
   }
 }
 export default SchemaTable;

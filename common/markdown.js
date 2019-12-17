@@ -223,8 +223,19 @@ function tableBody(dataSource, columns, level) {
 }
 
 function createSchemaTable(body) {
-  let template = ``;
   let dataSource = schema.schemaTransformToTable(json_parse(body));
+  let data = dataSource.filter((dt) => (dt.isComplex));
+  if (data.length) {
+    return data.map(function (dt) {
+      return `<h4>${dt.description}</h4>${generateTable(dt.data)}`;
+    }).join('\n');
+  }
+  return generateTable(dataSource);
+}
+
+function generateTable(dataSource) {
+  let template = ``;
+
   template += `<table>
   <thead class="ant-table-thead">
     <tr>
