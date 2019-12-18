@@ -5,7 +5,7 @@ exports.schemaTransformToTable = schema => {
   try {
     schema = checkJsonSchema(schema);
     let result = Schema(schema, 0);
-    result = _.isArray(result) ? result : [result];
+    result = _.isArray(result) ? result : result.isComplex ? result : [result];
     return result;
   } catch (err) {
     console.log(err);
@@ -23,7 +23,7 @@ function checkJsonSchema(json) {
   return newJson;
 }
 
-const mapping = function(data, index) {
+const mapping = function (data, index) {
   switch (data.type) {
     case 'string':
       return SchemaString(data);
@@ -82,18 +82,20 @@ const SchemaObject = (data, key) => {
   let result = [];
   let complex = oneOf || anyOf;
   // 多种响应状态值
-  if (_.isArray(complex) && key == 0) {
-    return complex.map(function (child) {
-      let { properties, required, description } = child;
-      properties = properties || {};
-      required = required || [];
-      description = description || '';
-      return {
-        isComplex: true,
-        description,
-        data: UnpackObjectProperties(properties, required, 0)
-      }
-    });
+  if (_.isArray(complex)) {
+    return {
+      isComplex: true,
+      children: complex.map(function (child) {
+        let { properties, required, description } = child;
+        properties = properties || {};
+        required = required || [];
+        description = description || '';
+        return {
+          description,
+          children: UnpackObjectProperties(properties, required, key)
+        }
+      })
+    }
   }
 
   return result.concat(UnpackObjectProperties(properties, required, key));
@@ -106,6 +108,7 @@ const UnpackObjectProperties = (properties, required, key) => {
     let copiedState = checkJsonSchema(JSON.parse(JSON.stringify(value)));
 
     let optionForm = Schema(copiedState, key + '-' + index);
+
     let item = {
       name,
       key: key + '-' + index,
@@ -114,7 +117,11 @@ const UnpackObjectProperties = (properties, required, key) => {
     };
 
     if (value.type === 'object' || (_.isUndefined(value.type) && _.isArray(optionForm))) {
-      item = Object.assign({}, item, { type: 'object', children: optionForm });
+      if (optionForm.isComplex) {
+        item = Object.assign({}, item, { type: 'object', children: optionForm.children });
+      } else {
+        item = Object.assign({}, item, { type: 'object', children: optionForm });
+      }
       delete item.sub;
     } else {
       item = Object.assign({}, item, optionForm);
@@ -145,7 +152,7 @@ const SchemaArray = (data, index) => {
   let items = checkJsonSchema(data.items);
   let optionForm = mapping(items, index);
   //  处理array嵌套array的问题
-  let children =optionForm ;
+  let children = optionForm;
   if (!_.isArray(optionForm) && !_.isUndefined(optionForm)) {
     optionForm.key = 'array-' + fieldNum++;
     children = [optionForm];
