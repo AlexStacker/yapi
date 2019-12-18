@@ -85,14 +85,17 @@ const SchemaObject = (data, key) => {
   if (_.isArray(complex)) {
     return {
       isComplex: true,
-      children: complex.map(function (child) {
-        let { properties, required, description } = child;
+      children: complex.map(function (child, index) {
+        let { properties, required, type, description } = child;
         properties = properties || {};
         required = required || [];
         description = description || '';
         return {
+          type,
+          name: description,
+          desc: description,
           description,
-          children: UnpackObjectProperties(properties, required, key)
+          children: UnpackObjectProperties(properties, required, key + '-' + index)
         }
       })
     }
@@ -118,7 +121,7 @@ const UnpackObjectProperties = (properties, required, key) => {
 
     if (value.type === 'object' || (_.isUndefined(value.type) && _.isArray(optionForm))) {
       if (optionForm.isComplex) {
-        item = Object.assign({}, item, { type: 'object', children: optionForm.children });
+        item = Object.assign({}, item, { type: 'object', name: 'union', children: optionForm.children });
       } else {
         item = Object.assign({}, item, { type: 'object', children: optionForm });
       }
