@@ -85,6 +85,9 @@ const SchemaObject = (data, key) => {
   if (_.isArray(complex) && key == 0) {
     return complex.map(function (child) {
       let { properties, required, description } = child;
+      properties = properties || {};
+      required = required || [];
+      description = description || '';
       return {
         isComplex: true,
         description,

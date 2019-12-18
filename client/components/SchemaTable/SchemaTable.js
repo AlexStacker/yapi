@@ -126,8 +126,8 @@ class SchemaTable extends Component {
     let complex = data.filter((dt) => (dt.isComplex));
 
     // 多种返回状态
-    if(complex) {
-      return data.map(function(dt, idx) {
+    if(complex.length) {
+      return complex.map(function(dt, idx) {
         return (
           <div className="interface-response" key={idx} >
             <h3 className="interface-response-title">{dt.description}</h3>
