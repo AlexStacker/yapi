@@ -7,12 +7,13 @@ import ProjectRequest from './ProjectRequest/ProjectRequest';
 import ProjectToken from './ProjectToken/ProjectToken';
 import ProjectMock from './ProjectMock/index.js';
 import { connect } from 'react-redux';
+
+import './Setting.scss';
+
 const TabPane = Tabs.TabPane;
 const plugin = require('client/plugin.js');
 
 const routers = {}
-
-import './Setting.scss';
 
 @connect(state => {
   return {

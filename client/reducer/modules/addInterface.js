@@ -1,3 +1,6 @@
+// Action Creators
+import axios from 'axios';
+
 // Actions
 const FETCH_ADD_INTERFACE_INPUT = 'yapi/addInterface/FETCH_ADD_INTERFACE_INPUT';
 const FETCH_ADD_INTERFACE_TAG_VALUE = 'yapi/addInterface/FETCH_ADD_INTERFACE_TAG_VALUE';
@@ -91,9 +94,6 @@ export default (state = initialState, action) => {
       return state;
   }
 };
-
-// Action Creators
-import axios from 'axios';
 
 export function pushInputValue(value) {
   return {

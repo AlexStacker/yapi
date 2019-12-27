@@ -20,10 +20,11 @@ import axios from 'axios';
 
 import URL from 'url';
 
+import { saveImportData } from 'client/reducer/modules/interface';
+import { fetchUpdateLogData } from 'client/reducer/modules/news.js';
+import { handleSwaggerUrlData } from 'client/reducer/modules/project';
+
 const Dragger = Upload.Dragger;
-import { saveImportData } from '../../../../reducer/modules/interface';
-import { fetchUpdateLogData } from '../../../../reducer/modules/news.js';
-import { handleSwaggerUrlData } from '../../../../reducer/modules/project';
 const Option = Select.Option;
 const confirm = Modal.confirm;
 const plugin = require('client/plugin.js');
@@ -91,7 +92,7 @@ class ProjectData extends Component {
     swaggerUrlData: PropTypes.string
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     axios.get(`/api/interface/getCatMenu?project_id=${this.props.match.params.id}`).then(data => {
       if (data.data.errcode === 0) {
         let menuList = data.data.data;

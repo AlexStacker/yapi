@@ -24,7 +24,7 @@ const Option = AutoComplete.Option;
   }
 )
 @withRouter
-export default class Srch extends Component {
+class Srch extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -156,3 +156,4 @@ export default class Srch extends Component {
     );
   }
 }
+export default Srch;

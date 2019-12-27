@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Switch, Button, Icon, Tooltip, message } from 'antd';
 import AceEditor from '../../../../components/AceEditor/AceEditor';
-const FormItem = Form.Item;
 import { updateProjectMock, getProject } from '../../../../reducer/modules/project';
+
+const FormItem = Form.Item;
 
 const formItemLayout = {
   labelCol: {
@@ -35,7 +36,7 @@ const tailFormItemLayout = {
   }
 )
 @Form.create()
-export default class ProjectMock extends Component {
+class ProjectMock extends Component {
   static propTypes = {
     form: PropTypes.object,
     match: PropTypes.object,
@@ -70,7 +71,7 @@ export default class ProjectMock extends Component {
     }
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.setState({
       is_mock_open: this.props.projectMsg.is_mock_open,
       project_mock_script: this.props.projectMsg.project_mock_script
@@ -134,3 +135,4 @@ export default class ProjectMock extends Component {
     );
   }
 }
+export default ProjectMock;

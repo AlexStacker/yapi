@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { Tabs, Layout } from 'antd';
 import { Route, Switch, matchPath } from 'react-router-dom';
 import { connect } from 'react-redux';
-const { Content, Sider } = Layout;
-
-import './interface.scss';
 
 import InterfaceMenu from './InterfaceList/InterfaceMenu.js';
 import InterfaceList from './InterfaceList/InterfaceList.js';
@@ -16,6 +13,11 @@ import InterfaceColContent from './InterfaceCol/InterfaceColContent.js';
 import InterfaceCaseContent from './InterfaceCol/InterfaceCaseContent.js';
 import { getProject } from '../../../reducer/modules/project';
 import { setColData } from '../../../reducer/modules/interfaceCol.js';
+
+import './interface.scss';
+
+const { Content, Sider } = Layout;
+
 const contentRouter = {
   path: '/project/:id/interface/:action/:actionId',
   exact: true
@@ -84,7 +86,7 @@ class Interface extends Component {
     }
     this.props.history.push('/project/' + params.id + '/interface/' + action);
   };
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     this.props.setColData({
       isShowCol: true
     });

@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 import {
   addProject,
   fetchProjectList,
-  delProject,
-  changeUpdateModal
+  delProject
+  // changeUpdateModal
 } from '../../../reducer/modules/project';
 import ProjectCard from '../../../components/ProjectCard/ProjectCard.js';
 import ErrMsg from '../../../components/ErrMsg/ErrMsg.js';
@@ -30,7 +30,7 @@ import './ProjectList.scss';
     fetchProjectList,
     addProject,
     delProject,
-    changeUpdateModal,
+    // changeUpdateModal,
     setBreadcrumb
   }
 )
@@ -48,7 +48,7 @@ class ProjectList extends Component {
     fetchProjectList: PropTypes.func,
     addProject: PropTypes.func,
     delProject: PropTypes.func,
-    changeUpdateModal: PropTypes.func,
+    // changeUpdateModal: PropTypes.func,
     projectList: PropTypes.array,
     userInfo: PropTypes.object,
     tableLoading: PropTypes.bool,
@@ -82,7 +82,7 @@ class ProjectList extends Component {
     this.props.fetchProjectList(this.props.currGroup._id, this.props.currPage);
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.props.setBreadcrumb([{ name: '' + (nextProps.currGroup.group_name || '') }]);
 
     // 切换分组

@@ -94,7 +94,7 @@ class Reg extends Component {
               {
                 required: true,
                 message: '请输入email!',
-                pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$/
+                pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{1,})+$/
               }
             ]
           })(

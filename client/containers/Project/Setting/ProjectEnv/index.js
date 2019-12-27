@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
 import { Icon, Layout, Tooltip, message, Row, Popconfirm } from 'antd';
-const { Content, Sider } = Layout;
 import ProjectEnvContent from './ProjectEnvContent.js';
 import { connect } from 'react-redux';
 import { updateEnv, getProject, getEnv } from '../../../../reducer/modules/project';
 import EasyDragSort from '../../../../components/EasyDragSort/EasyDragSort.js';
+
+const { Content, Sider } = Layout;
 
 @connect(
   state => {
@@ -51,7 +52,7 @@ class ProjectEnv extends Component {
     });
   }
 
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     this._isMounted = true;
     await this.props.getProject(this.props.projectId);
     const { env, _id } = this.props.projectMsg;

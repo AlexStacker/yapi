@@ -8,10 +8,11 @@ import { checkLoginState, logoutActions, loginTypeAction } from '../../reducer/m
 import { changeMenuItem } from '../../reducer/modules/menu';
 import { withRouter } from 'react-router';
 import Srch from './Search/Search';
-const { Header } = Layout;
 import LogoSVG from '../LogoSVG/index.js';
 import Breadcrumb from '../Breadcrumb/Breadcrumb.js';
 import GuideBtns from '../GuideBtns/GuideBtns.js';
+
+const { Header } = Layout;
 const plugin = require('client/plugin.js');
 
 let HeaderMenu = {
@@ -221,7 +222,7 @@ ToolUser.propTypes = {
   }
 )
 @withRouter
-export default class HeaderCom extends Component {
+class HeaderCom extends Component {
   constructor(props) {
     super(props);
   }
@@ -324,3 +325,4 @@ export default class HeaderCom extends Component {
     );
   }
 }
+export default HeaderCom;

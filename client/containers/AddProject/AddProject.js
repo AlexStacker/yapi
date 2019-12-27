@@ -6,14 +6,16 @@ import { addProject } from '../../reducer/modules/project.js';
 import { fetchGroupList } from '../../reducer/modules/group.js';
 import { autobind } from 'core-decorators';
 import { setBreadcrumb } from '../../reducer/modules/user';
+import { pickRandomProperty, handlePath, nameLengthLimit } from '../../common';
+import constants from '../../constants/variable.js';
+import { withRouter } from 'react-router';
+
+import './Addproject.scss';
+
 const { TextArea } = Input;
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
-import { pickRandomProperty, handlePath, nameLengthLimit } from '../../common';
-import constants from '../../constants/variable.js';
-import { withRouter } from 'react-router';
-import './Addproject.scss';
 
 const formItemLayout = {
   labelCol: {
@@ -89,7 +91,7 @@ class ProjectList extends Component {
     });
   }
 
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     this.props.setBreadcrumb([{ name: '新建项目' }]);
     if (!this.props.currGroup._id) {
       await this.props.fetchGroupList();

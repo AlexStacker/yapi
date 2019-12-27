@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 import React, { PureComponent as Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -271,7 +273,7 @@ export default class Run extends Component {
     );
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this._crossRequestInterval = initCrossRequest(hasPlugin => {
       this.setState({
         hasPlugin: hasPlugin
@@ -284,7 +286,7 @@ export default class Run extends Component {
     clearInterval(this._crossRequestInterval);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.checkInterfaceData(nextProps.data) && this.checkInterfaceData(this.props.data)) {
       if (nextProps.data._id !== this.props.data._id) {
         this.initState(nextProps.data);

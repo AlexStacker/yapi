@@ -85,7 +85,7 @@ class Profile extends Component {
     this.handleUserinfo(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (!nextProps.match.params.uid) {
       return;
     }
@@ -192,7 +192,7 @@ class Profile extends Component {
           this.handleEdit('secureEdit', false);
           message.success('修改密码成功');
           if (this.props.curUid === this.state.userinfo.uid) {
-            location.reload();
+            window.location.reload();
           }
         } else {
           message.error(data.errmsg);

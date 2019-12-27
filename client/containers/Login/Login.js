@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import { Form, Button, Input, Icon, message, Radio } from 'antd';
 import { loginActions, loginLdapActions } from '../../reducer/modules/user';
 import { withRouter } from 'react-router';
-const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
 
 import './Login.scss';
+
+const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
 
 const formItemStyle = {
   marginBottom: '.16rem'
@@ -89,7 +90,7 @@ class Login extends Component {
         : {
             required: true,
             message: '请输入正确的email!',
-            pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$/
+            pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{1,})+$/
           };
     return (
       <Form onSubmit={this.handleSubmit}>

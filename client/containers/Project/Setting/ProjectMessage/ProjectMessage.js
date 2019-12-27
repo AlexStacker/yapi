@@ -27,17 +27,20 @@ import { fetchGroupMsg } from '../../../../reducer/modules/group';
 import { fetchGroupList } from '../../../../reducer/modules/group.js';
 import { setBreadcrumb } from '../../../../reducer/modules/user';
 import { connect } from 'react-redux';
-const { TextArea } = Input;
 import { withRouter } from 'react-router';
-const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
-const RadioButton = Radio.Button;
+
 import constants from '../../../../constants/variable.js';
-const confirm = Modal.confirm;
 import { nameLengthLimit, entries, trim, htmlFilter } from '../../../../common';
 import '../Setting.scss';
 import _ from 'underscore';
 import ProjectTag from './ProjectTag.js';
+
+const { TextArea } = Input;
+const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
+const RadioButton = Radio.Button;
+const confirm = Modal.confirm;
+
 // layout
 const formItemLayout = {
   labelCol: {
@@ -218,7 +221,7 @@ class ProjectMessage extends Component {
     });
   };
 
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     await this.props.fetchGroupList();
     await this.props.fetchGroupMsg(this.props.projectMsg.group_id);
   }
@@ -227,10 +230,10 @@ class ProjectMessage extends Component {
     const { getFieldDecorator } = this.props.form;
     const { projectMsg, currGroup } = this.props;
     const mockUrl =
-      location.protocol +
+      window.location.protocol +
       '//' +
-      location.hostname +
-      (location.port !== '' ? ':' + location.port : '') +
+      window.location.hostname +
+      (window.location.port !== '' ? ':' + window.location.port : '') +
       `/mock/${projectMsg._id}${projectMsg.basepath}+$接口请求路径`;
     let initFormValues = {};
     const {

@@ -460,10 +460,10 @@ class View extends Component {
                 className="href"
                 onClick={() =>
                   window.open(
-                    location.protocol +
+                    window.location.protocol +
                       '//' +
-                      location.hostname +
-                      (location.port !== '' ? ':' + location.port : '') +
+                      window.location.hostname +
+                      (window.location.port !== '' ? ':' + window.location.port : '') +
                       `/mock/${this.props.currProject._id}${this.props.currProject.basepath}${
                         this.props.curData.path
                       }`,
@@ -471,10 +471,10 @@ class View extends Component {
                   )
                 }
               >
-                {location.protocol +
+                {window.location.protocol +
                   '//' +
-                  location.hostname +
-                  (location.port !== '' ? ':' + location.port : '') +
+                  window.location.hostname +
+                  (window.location.port !== '' ? ':' + window.location.port : '') +
                   `/mock/${this.props.currProject._id}${this.props.currProject.basepath}${
                     this.props.curData.path
                   }`}

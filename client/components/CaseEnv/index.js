@@ -3,9 +3,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Select, Row, Col, Collapse, Icon, Tooltip } from 'antd';
+
+import './index.scss';
+
 const Option = Select.Option;
 const Panel = Collapse.Panel;
-import './index.scss';
 
 export default class CaseEnv extends React.Component {
   constructor(props) {

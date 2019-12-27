@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 import React, { PureComponent as Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,6 +15,20 @@ import AceEditor from 'client/components/AceEditor/AceEditor';
 import axios from 'axios';
 import { MOCK_SOURCE } from '../../../../constants/variable.js';
 import Editor from 'common/tui-editor/dist/tui-editor-Editor-all.min.js';
+import {
+  Form,
+  Select,
+  Input,
+  Tooltip,
+  Button,
+  Row,
+  Col,
+  Radio,
+  Icon,
+  AutoComplete,
+  Switch
+} from 'antd';
+
 const jSchema = require('json-schema-editor-visual');
 const ResBodySchema = jSchema({ lang: 'zh_CN', mock: MOCK_SOURCE });
 const ReqBodySchema = jSchema({ lang: 'zh_CN', mock: MOCK_SOURCE });
@@ -56,20 +72,6 @@ const validJson = json => {
     return false;
   }
 };
-
-import {
-  Form,
-  Select,
-  Input,
-  Tooltip,
-  Button,
-  Row,
-  Col,
-  Radio,
-  Icon,
-  AutoComplete,
-  Switch
-} from 'antd';
 
 const Json5Example = `
   {

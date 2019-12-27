@@ -45,10 +45,10 @@ class InterfaceEdit extends Component {
     const { curdata, currProject } = this.props;
     this.state = {
       mockUrl:
-        location.protocol +
+        window.location.protocol +
         '//' +
-        location.hostname +
-        (location.port !== '' ? ':' + location.port : '') +
+        window.location.hostname +
+        (window.location.port !== '' ? ':' + window.location.port : '') +
         `/mock/${currProject._id}${currProject.basepath}${curdata.path}`,
       curdata: {},
       status: 0,
@@ -81,11 +81,11 @@ class InterfaceEdit extends Component {
   }
 
   componentDidMount() {
-    let domain = location.hostname + (location.port !== '' ? ':' + location.port : '');
+    let domain = window.location.hostname + (window.location.port !== '' ? ':' + window.location.port : '');
     let s,
       initData = false;
     //因后端 node 仅支持 ws， 暂不支持 wss
-    let wsProtocol = location.protocol === 'https:' ? 'wss' : 'ws';
+    let wsProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
 
     setTimeout(() => {
       if (initData === false) {

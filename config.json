@@ -1,0 +1,25 @@
+{
+  "port": "9090",
+  "adminAccount": "icve@admin.com",
+  "db": {
+    "servername": "120.27.155.125",
+    "DATABASE": "yapi",
+    "port": 26588,
+    "user": "icve",
+    "pass": "icve_password",
+    "authSource": "yapi"
+  },
+  "mail": {
+    "enable": false,
+    "host": "smtp.163.com",
+    "port": 465,
+    "from": "***@163.com",
+    "auth": {
+      "user": "***@163.com",
+      "pass": "*****"
+    }
+  },
+  "plugins": [{
+    "name": "import-xdoc"
+  }]
+}

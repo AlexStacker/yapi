@@ -5,20 +5,22 @@ import { Icon, Modal, Input, message,Spin,  Row, Menu, Col, Popover, Tooltip } f
 import { autobind } from 'core-decorators';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-const { TextArea } = Input;
-const Search = Input.Search;
+
 import UsernameAutoComplete from '../../../components/UsernameAutoComplete/UsernameAutoComplete.js';
 import GuideBtns from '../../../components/GuideBtns/GuideBtns.js';
 import { fetchNewsData } from '../../../reducer/modules/news.js';
 import {
   fetchGroupList,
   setCurrGroup,
-  setGroupList,
+  // setGroupList,
   fetchGroupMsg
 } from '../../../reducer/modules/group.js';
 import _ from 'underscore';
 
 import './GroupList.scss';
+
+const { TextArea } = Input;
+const Search = Input.Search;
 
 const tip = (
   <div className="title-container">
@@ -42,19 +44,19 @@ const tip = (
   {
     fetchGroupList,
     setCurrGroup,
-    setGroupList,
+    // setGroupList,
     fetchNewsData,
     fetchGroupMsg
   }
 )
 @withRouter
-export default class GroupList extends Component {
+class GroupList extends Component {
   static propTypes = {
     groupList: PropTypes.array,
     currGroup: PropTypes.object,
     fetchGroupList: PropTypes.func,
     setCurrGroup: PropTypes.func,
-    setGroupList: PropTypes.func,
+    // setGroupList: PropTypes.func,
     match: PropTypes.object,
     history: PropTypes.object,
     curUserRole: PropTypes.string,
@@ -79,7 +81,7 @@ export default class GroupList extends Component {
     super(props);
   }
 
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     const groupId = !isNaN(this.props.match.params.groupId)
       ? parseInt(this.props.match.params.groupId)
       : 0;
@@ -198,7 +200,7 @@ export default class GroupList extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // GroupSetting 组件设置的分组信息，通过redux同步到左侧分组菜单中
     if (this.props.groupList !== nextProps.groupList) {
       this.setState({
@@ -317,3 +319,4 @@ export default class GroupList extends Component {
     );
   }
 }
+export default GroupList;

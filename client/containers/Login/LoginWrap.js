@@ -11,7 +11,7 @@ const TabPane = Tabs.TabPane;
   loginWrapActiveKey: state.user.loginWrapActiveKey,
   canRegister: state.user.canRegister
 }))
-export default class LoginWrap extends Component {
+class LoginWrap extends Component {
   constructor(props) {
     super(props);
   }
@@ -41,3 +41,4 @@ export default class LoginWrap extends Component {
     );
   }
 }
+export default LoginWrap;

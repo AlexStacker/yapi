@@ -38,7 +38,7 @@ import './InterfaceCaseContent.scss';
   }
 )
 @withRouter
-export default class InterfaceCaseContent extends Component {
+class InterfaceCaseContent extends Component {
   static propTypes = {
     match: PropTypes.object,
     interfaceColList: PropTypes.array,
@@ -78,7 +78,7 @@ export default class InterfaceCaseContent extends Component {
     return currColId;
   }
 
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     const result = await this.props.fetchInterfaceColList(this.props.match.params.id);
     let { currCaseId } = this.props;
     const params = this.props.match.params;
@@ -95,7 +95,7 @@ export default class InterfaceCaseContent extends Component {
     this.setState({ editCasename: this.props.currCase.casename });
   }
 
-  async componentWillReceiveProps(nextProps) {
+  async UNSAFE_componentWillReceiveProps(nextProps) {
     const oldCaseId = this.props.match.params.actionId;
     const newCaseId = nextProps.match.params.actionId;
     const { interfaceColList } = nextProps;
@@ -233,3 +233,4 @@ export default class InterfaceCaseContent extends Component {
     );
   }
 }
+export default InterfaceCaseContent;

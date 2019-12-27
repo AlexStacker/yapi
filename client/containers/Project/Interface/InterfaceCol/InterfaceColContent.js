@@ -25,6 +25,11 @@ import { initCrossRequest } from 'client/components/Postman/CheckCrossInstall.js
 import produce from 'immer';
 import {InsertCodeMap} from 'client/components/Postman/Postman.js'
 
+import CaseEnv from 'client/components/CaseEnv';
+import Label from '../../../../components/Label/Label.js';
+
+import copy from 'copy-to-clipboard';
+
 const plugin = require('client/plugin.js');
 const {
   handleParams,
@@ -33,13 +38,8 @@ const {
   checkNameIsExistInArray
 } = require('common/postmanLib.js');
 const { handleParamsValue, json_parse, ArrayToObject } = require('common/utils.js');
-import CaseEnv from 'client/components/CaseEnv';
-import Label from '../../../../components/Label/Label.js';
-
 const Option = Select.Option;
 const createContext = require('common/createContext')
-
-import copy from 'copy-to-clipboard';
 
 const defaultModalStyle = {
   top: 10
@@ -168,7 +168,7 @@ class InterfaceColContent extends Component {
     this.handleColdata(this.props.currCaseList);
   }
 
-  async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     const result = await this.props.fetchInterfaceColList(this.props.match.params.id);
     await this.props.getToken(this.props.match.params.id);
     let { currColId } = this.props;
@@ -480,7 +480,7 @@ class InterfaceColContent extends Component {
     this.aceEditor.editor.insertCode(code);
   };
 
-  async componentWillReceiveProps(nextProps) {
+  async UNSAFE_componentWillReceiveProps(nextProps) {
     let newColId = !isNaN(nextProps.match.params.actionId) ? +nextProps.match.params.actionId : 0;
 
     if ((newColId && this.currColId && newColId !== this.currColId) || nextProps.isRander) {
@@ -866,10 +866,10 @@ class InterfaceColContent extends Component {
     );
 
     const localUrl =
-      location.protocol +
+      window.location.protocol +
       '//' +
-      location.hostname +
-      (location.port !== '' ? ':' + location.port : '');
+      window.location.hostname +
+      (window.location.port !== '' ? ':' + window.location.port : '');
     let currColEnvObj = this.handleColEnvObj(this.state.currColEnvObj);
     const autoTestsUrl = `/api/open/run_auto_test?id=${this.props.currColId}&token=${
       this.props.token

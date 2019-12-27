@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'antd';
 import PropTypes from 'prop-types';
 
-exports.initCrossRequest = function (fn) {
+const initCrossRequest = function (fn) {
   let startTime = 0;
   let _crossRequest = setInterval(() => {
     startTime += 500;
@@ -62,5 +62,5 @@ function CheckCrossInstall(props) {
     </div>
   );
 }
-
+export { initCrossRequest }
 export default CheckCrossInstall;

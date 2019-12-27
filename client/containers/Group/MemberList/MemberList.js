@@ -146,7 +146,7 @@ class MemberList extends Component {
     });
   };
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this._groupId !== this._groupId) {
       return null;
     }
@@ -198,7 +198,7 @@ class MemberList extends Component {
               <Link to={`/user/profile/${record.uid}`}>
                 <img
                   src={
-                    location.protocol + '//' + location.host + '/api/user/avatar?uid=' + record.uid
+                    window.location.protocol + '//' + window.location.host + '/api/user/avatar?uid=' + record.uid
                   }
                   className="m-user-img"
                 />

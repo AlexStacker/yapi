@@ -1,3 +1,7 @@
+// Action Creators
+import axios from 'axios';
+import variable from '../../constants/variable';
+
 // Actions
 const FETCH_NEWS_DATA = 'yapi/news/FETCH_NEWS_DATA';
 const FETCH_MORE_NEWS = 'yapi/news/FETCH_MORE_NEWS';
@@ -48,10 +52,6 @@ export default (state = initialState, action) => {
       return state;
   }
 };
-
-// Action Creators
-import axios from 'axios';
-import variable from '../../constants/variable';
 
 export function fetchNewsData(typeid, type, page, limit, selectValue) {
   let param = {

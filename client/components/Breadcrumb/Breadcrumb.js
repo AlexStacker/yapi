@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
   };
 })
 @withRouter
-export default class BreadcrumbNavigation extends Component {
+class BreadcrumbNavigation extends Component {
   constructor(props) {
     super(props);
   }
@@ -40,3 +40,4 @@ export default class BreadcrumbNavigation extends Component {
     );
   }
 }
+export default BreadcrumbNavigation;

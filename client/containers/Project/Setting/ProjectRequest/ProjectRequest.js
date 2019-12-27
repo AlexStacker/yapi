@@ -2,10 +2,11 @@ import React, { PureComponent as Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Button, message } from 'antd';
-const FormItem = Form.Item;
 import './project-request.scss';
 import AceEditor from 'client/components/AceEditor/AceEditor';
 import { updateProjectScript, getProject } from '../../../../reducer/modules/project';
+
+const FormItem = Form.Item;
 
 @connect(
   state => {
@@ -19,7 +20,7 @@ import { updateProjectScript, getProject } from '../../../../reducer/modules/pro
   }
 )
 @Form.create()
-export default class ProjectRequest extends Component {
+class ProjectRequest extends Component {
   static propTypes = {
     projectMsg: PropTypes.object,
     updateProjectScript: PropTypes.func,
@@ -27,7 +28,7 @@ export default class ProjectRequest extends Component {
     projectId: PropTypes.number
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.setState({
       pre_script: this.props.projectMsg.pre_script,
       after_script: this.props.projectMsg.after_script
@@ -104,3 +105,4 @@ export default class ProjectRequest extends Component {
     );
   }
 }
+export default ProjectRequest;

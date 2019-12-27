@@ -18,7 +18,7 @@ import './Run.scss';
   curUid: state.user.uid
 }))
 @withRouter
-export default class Run extends Component {
+class Run extends Component {
   static propTypes = {
     currProject: PropTypes.object,
     currInterface: PropTypes.object,
@@ -32,9 +32,9 @@ export default class Run extends Component {
     super(props);
   }
 
-  componentWillMount() {}
+  UNSAFE_componentWillMount() {}
 
-  componentWillReceiveProps() {}
+  UNSAFE_componentWillReceiveProps() {}
 
   savePostmanRef = postman => {
     this.postman = postman;
@@ -111,3 +111,4 @@ export default class Run extends Component {
     );
   }
 }
+export default Run;

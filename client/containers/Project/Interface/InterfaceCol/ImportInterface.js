@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Table, Select, Tooltip, Icon } from 'antd';
 import variable from '../../../../constants/variable';
 import { connect } from 'react-redux';
-const Option = Select.Option;
 import { fetchInterfaceListMenu } from '../../../../reducer/modules/interface.js';
+
+const Option = Select.Option;
 
 @connect(
   state => {
@@ -17,7 +18,7 @@ import { fetchInterfaceListMenu } from '../../../../reducer/modules/interface.js
     fetchInterfaceListMenu
   }
 )
-export default class ImportInterface extends Component {
+class ImportInterface extends Component {
   constructor(props) {
     super(props);
   }
@@ -239,3 +240,4 @@ export default class ImportInterface extends Component {
     );
   }
 }
+export default ImportInterface;

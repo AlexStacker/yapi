@@ -8,14 +8,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Tabs, Layout, Spin } from 'antd';
-const { Content, Sider } = Layout;
-const TabPane = Tabs.TabPane;
+
 import { fetchNewsData } from '../../reducer/modules/news.js';
 import {
   setCurrGroup
 } from '../../reducer/modules/group';
 import './Group.scss';
-import axios from 'axios'
+import axios from 'axios';
+
+const { Content, Sider } = Layout;
+const TabPane = Tabs.TabPane;
 
 @connect(
   state => {
@@ -31,7 +33,7 @@ import axios from 'axios'
     setCurrGroup
   }
 )
-export default class Group extends Component {
+class Group extends Component {
   constructor(props) {
     super(props);
 
@@ -121,3 +123,4 @@ export default class Group extends Component {
     );
   }
 }
+export default Group;

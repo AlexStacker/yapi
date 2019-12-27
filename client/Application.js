@@ -77,7 +77,7 @@ plugin.emitHook('app_route', AppRoute);
     checkLoginState
   }
 )
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -154,3 +154,4 @@ export default class App extends Component {
     return this.route(this.props.loginState);
   }
 }
+export default App;

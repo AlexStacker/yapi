@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.scss';
 import { Icon, Row, Col, Form, Input, Select, Button, AutoComplete, Tooltip } from 'antd';
+import constants from 'client/constants/variable.js';
+
 const FormItem = Form.Item;
 const Option = Select.Option;
-import constants from 'client/constants/variable.js';
 
 const initMap = {
   header: [
@@ -119,7 +120,7 @@ class ProjectEnvContent extends Component {
     this.setState({ ...newValue });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     let curEnvName = this.props.projectMsg.name;
     let nextEnvName = nextProps.projectMsg.name;
     if (curEnvName !== nextEnvName) {

@@ -35,10 +35,10 @@ class Activity extends Component {
             <div className="Mockurl">
               <span>Mock地址：</span>
               <p>
-                {location.protocol +
+                {window.location.protocol +
                   '//' +
-                  location.hostname +
-                  (location.port !== '' ? ':' + location.port : '') +
+                  window.location.hostname +
+                  (window.location.port !== '' ? ':' + window.location.port : '') +
                   `/mock/${currProject._id}${currProject.basepath}/yourPath`}
               </p>
               <Button type="primary">

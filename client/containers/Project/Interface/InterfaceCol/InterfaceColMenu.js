@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import {
   fetchInterfaceColList,
-  fetchInterfaceCaseList,
+  // fetchInterfaceCaseList,
   setColData,
   fetchCaseList,
   fetchCaseData
@@ -15,12 +15,12 @@ import ImportInterface from './ImportInterface';
 import { Input, Icon, Button, Modal, message, Tooltip, Tree, Form } from 'antd';
 import { arrayChangeIndex } from '../../../../common.js';
 
+import './InterfaceColMenu.scss';
+
 const TreeNode = Tree.TreeNode;
 const FormItem = Form.Item;
 const confirm = Modal.confirm;
 const headHeight = 240; // menu顶部到网页顶部部分的高度
-
-import './InterfaceColMenu.scss';
 
 const ColModalForm = Form.create()(props => {
   const { visible, onCancel, onCreate, form, title } = props;
@@ -54,7 +54,7 @@ const ColModalForm = Form.create()(props => {
   },
   {
     fetchInterfaceColList,
-    fetchInterfaceCaseList,
+    // fetchInterfaceCaseList,
     fetchCaseData,
     // fetchInterfaceListMenu,
     fetchCaseList,
@@ -63,12 +63,12 @@ const ColModalForm = Form.create()(props => {
   }
 )
 @withRouter
-export default class InterfaceColMenu extends Component {
+class InterfaceColMenu extends Component {
   static propTypes = {
     match: PropTypes.object,
     interfaceColList: PropTypes.array,
     fetchInterfaceColList: PropTypes.func,
-    fetchInterfaceCaseList: PropTypes.func,
+    // fetchInterfaceCaseList: PropTypes.func,
     // fetchInterfaceListMenu: PropTypes.func,
     fetchCaseList: PropTypes.func,
     fetchCaseData: PropTypes.func,
@@ -102,11 +102,11 @@ export default class InterfaceColMenu extends Component {
     super(props);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.getList();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.interfaceColList !== nextProps.interfaceColList) {
       this.setState({
         list: nextProps.interfaceColList
@@ -627,3 +627,4 @@ export default class InterfaceColMenu extends Component {
     );
   }
 }
+export default InterfaceColMenu;
